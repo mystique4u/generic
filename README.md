@@ -1,0 +1,2 @@
+# generic
+generic ai boilerplate
