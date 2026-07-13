@@ -1,0 +1,55 @@
+# Example Compose stack — copy/adapt; not production-ready.
+# Usage:
+#   cp docker/compose.example.yml docker-compose.yml
+#   cp .env.example .env
+#   docker compose up -d
+
+services:
+  app:
+    image: alpine:3.21
+    command: ["sleep", "infinity"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+    depends_on:
+      mongo:
+        condition: service_started
+      mysql:
+        condition: service_started
+    networks:
+      - localdev
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - localdev
+
+  mysql:
+    image: mysql:8.4
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-changeme}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-app}
+      MYSQL_USER: ${MYSQL_USER:-app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - localdev
+
+volumes:
+  mongo_data:
+  mysql_data:
+
+networks:
+  localdev:
+    driver: bridge

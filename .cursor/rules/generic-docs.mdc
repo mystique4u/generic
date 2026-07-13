@@ -1,0 +1,13 @@
+---
+description: Modular docs — update INDEX and avoid duplicate guides
+globs: docs/**
+alwaysApply: false
+---
+
+# Documentation rules
+
+- Docs are modular with entrypoint [docs/INDEX.md](docs/INDEX.md)
+- New page → add a row to INDEX
+- Do not duplicate guides; link to the canonical page
+- Behaviour changes also belong under `CHANGELOG.md` `[Unreleased]`
+- Keep English only

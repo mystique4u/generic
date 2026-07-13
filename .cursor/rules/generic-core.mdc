@@ -1,0 +1,45 @@
+---
+description: Core standards — AGENTS first, branch-first, secrets, hooks = CI
+alwaysApply: true
+---
+
+# Generic Core Standards
+
+Read [AGENTS.md](AGENTS.md) first.
+
+## Git flow
+
+- **Branch first** — before any feature/fix code, `git checkout -b feature/...` or `fix/...` from `main`
+- Never commit directly to `main`
+- One logical change per PR
+- Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, ...)
+
+## Validation (automatic)
+
+After `bash scripts/bootstrap.sh`, git hooks run **`bash scripts/validate.sh`** (same as CI). Do not skip hooks.
+
+## Documentation
+
+Update in the same PR as code:
+
+- `CHANGELOG.md` → `[Unreleased]` for behaviour changes
+- `docs/INDEX.md` when adding docs
+- `AGENTS.md` when agent workflow changes
+
+## Versioning
+
+Primary: **release-please** on merge to `main`. Do not hand-edit versions in normal flow.
+Offline fallback only: `bash scripts/bump-version.sh`.
+
+## Language
+
+**English only** in the repository — code, comments, docs, commits.
+See `.agents/skills/generic-language/SKILL.md`.
+
+## Secrets
+
+Never commit secrets. Use `.env` (gitignored) and `.env.example`.
+
+## Token efficiency
+
+Use `caveman` / `cavecrew` when the user asks for terse responses or long sessions.

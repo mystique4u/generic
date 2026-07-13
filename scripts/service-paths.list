@@ -1,0 +1,34 @@
+# Service/meta paths — changes here do NOT trigger app gates or version bumps.
+# One pattern per line. Matches use path prefix or glob (*, **).
+
+.github/**
+.agents/**
+.continue/**
+.cursor/**
+.githooks/**
+.devcontainer/**
+scripts/**
+docs/**
+docker/**
+skills-lock.json
+AGENTS.md
+README.md
+CONTRIBUTING.md
+CHANGELOG.md
+SECURITY.md
+LICENSE
+VERSION
+PLAN.md
+PROGRESS.md
+.editorconfig
+.gitignore
+.pre-commit-config.yaml
+.env.example
+Makefile
+release-please-config.json
+.release-please-manifest.json
+services/README.md
+apps/README.md
+packages/README.md
+tests/README.md
+src/README.md

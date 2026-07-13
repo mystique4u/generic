@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Git pre-commit hook — full CI-parity validation.
+exec bash "$(git rev-parse --show-toplevel)/scripts/validate.sh"

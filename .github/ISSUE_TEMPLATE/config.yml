@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/mystique4u/generic/blob/main/docs/INDEX.md
+    about: Start with the docs index

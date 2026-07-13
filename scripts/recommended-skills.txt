@@ -1,0 +1,22 @@
+# Recommended community skills (scripts/install-recommended-skills.sh).
+# Caveman suite is already vendored under .agents/skills/.
+
+# Default auto-install
+addyosmani/agent-skills:test-driven-development
+addyosmani/agent-skills:security-and-hardening
+addyosmani/agent-skills:planning-and-task-breakdown
+anthropics/skills:skill-creator
+spencerpauly/awesome-cursor-skills:suggesting-cursor-hooks
+
+# Code review is covered by .cursor/agents/code-reviewer.md + caveman-review
+
+# Opt-in (stack recipes)
+# addyosmani/agent-skills:performance-optimization
+# rubencr14/agent-skills:backend-development
+# rubencr14/agent-skills:web-development
+# rubencr14/agent-skills:web-testing
+# rubencr14/agent-skills:cybersecurity
+# anthropics/skills:frontend-design
+# anthropics/skills:mcp-builder
+# spencerpauly/awesome-cursor-skills:suggesting-cursor-rules
+# spencerpauly/awesome-cursor-skills:suggesting-skills

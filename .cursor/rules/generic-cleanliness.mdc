@@ -1,0 +1,22 @@
+---
+description: Clean & organized by default — thin root, SoC, prune clutter, sync docs
+alwaysApply: true
+---
+
+# Cleanliness (mandatory)
+
+Follow [docs/cleanliness-and-organization.md](docs/cleanliness-and-organization.md).
+
+## Must
+
+- Keep the repository root thin — no orphan files or scratch notes
+- One responsibility per module/service; prefer existing libraries
+- Prefer `services/` + `apps/` for microservices; use `src/` only for single-app
+- Delete unused placeholders or leave a clear README why they remain
+- No dead code, commented-out blocks, or duplicate docs
+- Register new docs in `docs/INDEX.md`
+- English-only structure and file names
+
+## PR bar
+
+Leave the tree cleaner than you found it. See the checklist in the cleanliness doc.

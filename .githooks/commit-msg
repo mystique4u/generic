@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Git commit-msg hook — conventional commit format via pre-commit.
+set -euo pipefail
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+if command -v pre-commit &>/dev/null; then
+  exec pre-commit run --hook-stage commit-msg --commit-msg-filename "$1"
+fi
+
+# Fallback regex if pre-commit missing
+msg_file="$1"
+first_line="$(head -n 1 "$msg_file" || true)"
+if [[ "$first_line" =~ ^(feat|fix|docs|chore|refactor|test|ci|perf|build|style|revert)(\(.+\))?\!?:\ .+ ]]; then
+  exit 0
+fi
+echo "Commit message must use Conventional Commits (feat:, fix:, docs:, ...)" >&2
+exit 1
