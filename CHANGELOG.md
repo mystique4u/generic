@@ -14,4 +14,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Binding flow rule + `enforce-git-flow.sh` Cursor hook (`failClosed`) so agents cannot skip branch-first / hooks
 - Initial AI-assisted project meta-kit template (agent OS, hooks, docs, Docker placeholders, CI automation)

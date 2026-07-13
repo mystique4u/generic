@@ -64,6 +64,10 @@ docker/           # compose example (infra placeholders)
 
 ## Mandatory workflow
 
+### Binding (non-negotiable)
+
+Cursor **rules** (`generic-binding-flow`, `generic-core`, `generic-cleanliness`) plus **hooks** (`enforce-git-flow.sh`, git hooks) enforce the flow. Agents must not invent shortcuts, skip hooks, or commit on `main`. See [docs/agent-os.md](docs/agent-os.md#enforcement).
+
 ### 0. Branch first
 
 ```bash

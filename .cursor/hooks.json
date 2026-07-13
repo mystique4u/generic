@@ -3,18 +3,21 @@
   "hooks": {
     "beforeShellExecution": [
       {
-        "command": ".cursor/hooks/guard-push.sh",
-        "matcher": "git push"
+        "command": ".cursor/hooks/enforce-git-flow.sh",
+        "matcher": "git\\s+",
+        "failClosed": true
       }
     ],
     "sessionStart": [
       {
-        "command": ".cursor/hooks/session-context.sh"
+        "command": ".cursor/hooks/session-context.sh",
+        "failClosed": false
       }
     ],
     "afterFileEdit": [
       {
-        "command": ".cursor/hooks/format-on-edit.sh"
+        "command": ".cursor/hooks/format-on-edit.sh",
+        "failClosed": false
       }
     ]
   }
