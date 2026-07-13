@@ -4,13 +4,32 @@
 
 Use local Python, Node, Bash, and Docker CLI already on the machine. Prefer editing and running tests on the host; use Compose for dependent services (Mongo, MySQL).
 
+## Required tools (CI parity)
+
+Local `scripts/validate.sh` must match GitHub Actions. Required on the host:
+
+| Tool | Purpose |
+|------|---------|
+| `pre-commit` | Formatters + YAML/merge checks |
+| `shellcheck` | Shell script lint (required — not skipped) |
+| `python3` | Helper scripts |
+
+Install shellcheck without root:
+
+```bash
+bash scripts/ensure-shellcheck.sh
+# ensure ~/.local/bin is on PATH
+```
+
+`bootstrap.sh` calls `ensure-shellcheck.sh` automatically.
+
 ## Bootstrap (once)
 
 ```bash
 bash scripts/bootstrap.sh
 ```
 
-Installs git hooks (`core.hooksPath=.githooks`) and pre-commit environments. After this, validation runs on commit/push automatically.
+Installs git hooks (`core.hooksPath=.githooks`), pre-commit environments, and shellcheck. After this, validation runs on commit/push automatically.
 
 ## Environment
 

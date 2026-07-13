@@ -23,7 +23,7 @@ read_refs() {
 zero="0000000000000000000000000000000000000000"
 files=()
 
-while read -r local_ref local_sha remote_ref remote_sha; do
+while read -r _local_ref local_sha _remote_ref remote_sha; do
   [ -z "${local_sha:-}" ] || [ "$local_sha" = "$zero" ] && continue
 
   if [ "${remote_sha:-$zero}" = "$zero" ]; then

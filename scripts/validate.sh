@@ -64,7 +64,11 @@ else
 fi
 
 print_section "4  SHELLCHECK"
-if command -v shellcheck &>/dev/null; then
+if ! command -v shellcheck &>/dev/null; then
+  fail "shellcheck not installed (required for CI parity)"
+  echo "       Install: https://github.com/koalaman/shellcheck#installing"
+  echo "       Or: bash scripts/ensure-shellcheck.sh"
+else
   mapfile -t shell_files < <(
     find scripts -type f -name '*.sh' -print
     find .githooks -type f -print
@@ -77,9 +81,6 @@ if command -v shellcheck &>/dev/null; then
   else
     fail "shellcheck"
   fi
-else
-  warn "shellcheck not installed — skipping"
-  pass "shellcheck skipped"
 fi
 
 print_section "5  VERSION + CHANGELOG"

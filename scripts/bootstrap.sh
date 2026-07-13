@@ -64,6 +64,11 @@ chmod +x scripts/*.sh .cursor/hooks/*.sh 2>/dev/null || true
 
 echo "git core.hooksPath → .githooks"
 
+# Shellcheck required for CI parity
+if [ -f scripts/ensure-shellcheck.sh ]; then
+  bash scripts/ensure-shellcheck.sh || echo "WARN: shellcheck install failed — validate.sh will fail until it is available"
+fi
+
 # Install pre-commit hook environments (used by validate.sh / commit-msg)
 if command -v pipx &>/dev/null; then
   pipx ensurepath >/dev/null 2>&1 || true
