@@ -24,7 +24,9 @@ Breaking changes: `feat!:` or `BREAKING CHANGE:` footer → major bump via relea
 
 On merge to `main`, [release-please](https://github.com/googleapis/release-please) opens/updates a **Release PR** that bumps `VERSION`, updates `CHANGELOG.md`, and then tags + creates a GitHub Release when that PR merges.
 
-You should **not** edit versions by hand in normal flow.
+**Repo setting required:** Settings → Actions → General → Workflow permissions → enable **Allow GitHub Actions to create and approve pull requests**. Without this, the release-please job fails when creating the Release PR.
+
+Use Conventional Commits so bumps are correct (`feat` → minor, `fix` → patch, `BREAKING CHANGE` → major).
 
 ## Offline fallback
 

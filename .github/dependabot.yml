@@ -1,18 +1,14 @@
+# Meta-kit: only track GitHub Actions until a stack recipe adds manifests.
+# Re-enable pip/npm (or add directories) when you add pyproject.toml / package.json.
 version: 2
 updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
-
-  - package-ecosystem: pip
-    directory: "/"
-    schedule:
-      interval: weekly
     open-pull-requests-limit: 5
-
-  - package-ecosystem: npm
-    directory: "/"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: "build(deps)"

@@ -8,7 +8,9 @@
 ## Scheduled / CI
 
 - `.github/workflows/security.yml` — gitleaks, dependency audit, Trivy (when Dockerfiles exist)
-- Dependabot — dependency update PRs
+- Dependabot — **GitHub Actions only** in this meta-kit (no pip/npm until you add manifests)
+
+When you adopt a [stack recipe](stacks/INDEX.md), re-add pip and/or npm ecosystems to `.github/dependabot.yml` pointing at the directories that contain `pyproject.toml` / `package.json`.
 
 ## Stack extensions
 

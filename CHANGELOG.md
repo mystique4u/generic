@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - ShellCheck SC2034 in `get-push-changed-files.sh`; local validate now requires shellcheck (CI parity) via `scripts/ensure-shellcheck.sh`
+- Dependabot: drop pip/npm ecosystems until manifests exist (meta-kit); bump workflow action versions on main and close noisy PRs
 
 ### Added
 
