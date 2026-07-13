@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Generic Core Standards
 
-Read [AGENTS.md](AGENTS.md) first.
+Read [AGENTS.md](AGENTS.md) first. Obey [generic-binding-flow](generic-binding-flow.mdc) — no shortcuts.
 
 ## Git flow
 
@@ -16,7 +16,7 @@ Read [AGENTS.md](AGENTS.md) first.
 
 ## Validation (automatic)
 
-After `bash scripts/bootstrap.sh`, git hooks run **`bash scripts/validate.sh`** (same as CI). Do not skip hooks.
+After `bash scripts/bootstrap.sh`, git hooks run **`bash scripts/validate.sh`** (same as CI). Do not skip hooks. Cursor hook `enforce-git-flow.sh` also blocks `--no-verify` and commits on `main`.
 
 ## Documentation
 

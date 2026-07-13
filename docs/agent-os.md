@@ -54,10 +54,24 @@ Opt-in (stack recipes / as needed):
 
 Pin installs in `skills-lock.json` when the CLI writes one.
 
+## Enforcement
+
+Docs and skills are guidance. **Enforcement** is layered so agents cannot casually bypass flows:
+
+| Layer | What | Can model ignore? |
+|-------|------|-------------------|
+| Cursor `beforeShellExecution` + `failClosed` | `enforce-git-flow.sh` — deny commit on `main`, deny `--no-verify`, ask/deny force-push | No (deterministic) |
+| Git hooks (`.githooks`) | `validate.sh` on commit/push; Conventional Commits | No (unless user forces outside Cursor) |
+| Always-on rules | `generic-binding-flow`, `generic-core`, `generic-cleanliness` | Soft — but binding language + sessionStart context |
+| Skills / docs | Procedures and checklists | Soft — use for how-to |
+
+If an agent tries to skip validation or work on `main`, the shell hook should block it. Prefer fixing the failure over disabling hooks.
+
 ## Rules (`.cursor/rules/`)
 
 | Rule | Apply |
 |------|-------|
+| `generic-binding-flow.mdc` | always — MUST/NEVER workflow; no rationalization |
 | `generic-core.mdc` | always — AGENTS, branch, secrets, hooks |
 | `generic-cleanliness.mdc` | always — tidy layout |
 | `generic-docs.mdc` | `docs/**` — modular docs |
@@ -66,9 +80,9 @@ Pin installs in `skills-lock.json` when the CLI writes one.
 
 | Event | Behaviour |
 |-------|-----------|
-| `sessionStart` | Context + self-heal `core.hooksPath` |
+| `sessionStart` | Binding context + self-heal `core.hooksPath` |
+| `beforeShellExecution` (`git`) | **failClosed** enforce-git-flow (block shortcuts) |
 | `afterFileEdit` | Auto-format edited file |
-| `beforeShellExecution` | Guard/remind on `git push` to main |
 
 ## Subagents (`.cursor/agents/`)
 

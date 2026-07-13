@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Inject agent context at session start; self-heal git hooksPath.
+# Inject binding agent context at session start; self-heal git hooksPath.
 set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
@@ -10,7 +10,19 @@ if [ -d "$REPO_ROOT/.githooks" ]; then
   fi
 fi
 
-echo '{
-  "additional_context": "generic meta-kit — read AGENTS.md first. Cleanliness is mandatory (docs/cleanliness-and-organization.md). ENGLISH ONLY in repo files. Prefer services/+apps/. Hooks run validate.sh on commit/push after bootstrap. Skills: generic-project, generic-workflow, generic-versioning, generic-cleanliness, generic-language, generic-tdd, generic-docker. Token saving: caveman suite. Releases: release-please (not manual bumps)."
-}'
+python3 - <<'PY'
+import json
+print(json.dumps({
+  "additional_context": (
+    "BINDING FLOWS (non-negotiable): Read AGENTS.md first. "
+    "Branch before implementing (feature/... or fix/...). Never commit on main. "
+    "Never --no-verify. Hooks run validate.sh = CI. "
+    "Cleanliness is mandatory (docs/cleanliness-and-organization.md). "
+    "English only in repo files. release-please owns SemVer. "
+    "Cursor hook enforce-git-flow.sh + git hooks block shortcuts — do not work around them. "
+    "Skills: generic-project, generic-workflow, generic-versioning, generic-cleanliness, "
+    "generic-language, generic-tdd, generic-docker; token saving: caveman suite."
+  )
+}))
+PY
 exit 0

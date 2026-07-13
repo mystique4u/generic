@@ -1,0 +1,39 @@
+---
+description: BINDING workflow — agents MUST follow defined flows; no rationalization or shortcuts
+alwaysApply: true
+---
+
+# Binding project flows (non-negotiable)
+
+These rules override convenience. Do **not** invent alternate workflows, skip steps, or argue that docs are optional.
+
+## Authority order
+
+1. Deterministic **Cursor hooks** + **git hooks** (cannot be ignored)
+2. Always-on Cursor rules (this file + `generic-core` + `generic-cleanliness`)
+3. [AGENTS.md](AGENTS.md) and [docs/](docs/INDEX.md)
+
+If a hook or rule conflicts with a shorter path, **follow the hook/rule**.
+
+## MUST
+
+1. Read [AGENTS.md](AGENTS.md) at session start before implementing
+2. **Branch first** — create `feature/...` or `fix/...` from `main` before any implementation commits
+3. Use Conventional Commits only
+4. Let git hooks run `scripts/validate.sh` (same as CI) — never ask the user to “just push”
+5. Update `CHANGELOG.md` `[Unreleased]` for behaviour changes; register new docs in `docs/INDEX.md`
+6. Prefer libraries; keep separation of responsibilities; follow [docs/cleanliness-and-organization.md](docs/cleanliness-and-organization.md)
+7. English only in repository files
+
+## NEVER
+
+1. Commit or push while on `main` (except when the user explicitly orders a release-merge they will do themselves)
+2. Pass `--no-verify`, `--no-gpg-sign`, or otherwise skip hooks
+3. `git push --force` / `--force-with-lease` to `main`
+4. Hand-bump SemVer in normal flow (release-please owns releases)
+5. Commit secrets or `.env`
+6. Dump orphan files at repo root or invent parallel folder layouts
+
+## When stuck
+
+Do not weaken the flow. Ask the user, or stop and report the blocker.
