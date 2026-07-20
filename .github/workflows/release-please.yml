@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: release-please
-        uses: googleapis/release-please-action@v4.3.0
+        uses: googleapis/release-please-action@v5.0.0
         timeout-minutes: 8
         with:
           config-file: release-please-config.json
